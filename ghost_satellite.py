@@ -1,18 +1,16 @@
-import os
-import sys
-import subprocess
 import requests
 from skyfield.api import load
 
 def run_defense_core():
     print("=== THE GHOST SATELLITE: INTEGRATED DEFENSE CORE ACTIVATED ===")
     
-    # Check and install google-colab-ai if missing inside the module
+    # Secure lazy-import for google-colab-ai to prevent kernel argument conflicts
     try:
         from google.colab import ai
     except ImportError:
-        print("[System Info]: Setting up AI communication bridge...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "google-colab-ai", "-q"])
+        print("[System Info]: Dynamically loading AI subsystems...")
+        import os
+        os.system("pip install google-colab-ai -q")
         from google.colab import ai
 
     # 1. Fetching Live Multi-Satellite Data
@@ -79,7 +77,7 @@ def run_defense_core():
             print(ai_response)
             print("=======================")
         except Exception as e:
-            print(f"\n[AI Connection Note]: Active threat logged. AI Bridge active but response delayed.")
+            print(f"\n[AI Connection Note]: Active threat logged. System running locally.")
     else:
         print("\n[🟢 SYSTEM SAFE] No unverified satellite breaches detected in the target sector.")
     print("=============================================================")
